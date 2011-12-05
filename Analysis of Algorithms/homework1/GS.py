@@ -27,24 +27,8 @@ def getinput():
     int2woman.append(woman)
   return menpreflist, womenpreflist
 
-def test():
-  menpreflist, womenpreflist = getinput()
-  ranking = gs(menpreflist, womenpreflist)
-  for item in ranking.items():
-    print item[0], item[1]
-
 """
-Make all men and women free
-while a man has not proposed to every woman:
-  choose a man m
-  let w be the highest ranked women to who m has not proposed to
-  if w is free:
-    (m,w) become engages
-  else:
-    if w prefers m' to m:
-      m remains free
-    else:
-      m' becomes free
+Implementation of the GS algorithm.
 """
 def gs(menpreflist, womenpreflist):
   freemen = [menpref[0] for menpref in menpreflist]  
@@ -72,4 +56,21 @@ def gs(menpreflist, womenpreflist):
         nextman[m1] += 1
         freemen.append(m1)
   return current
-test()
+
+if __name__ == "__main__":
+  menpreflist, womenpreflist = getinput()
+  for menpref in menpreflist:
+    line = ""
+    for item in menpref:
+      line += " " + item
+    print line.strip()
+  print ""
+  for womenpref in womenpreflist:
+    line = ""
+    for item in womenpref:
+      line += " " + item
+    print line.strip()
+  print ""
+  ranking = gs(menpreflist, womenpreflist)
+  for item in ranking.items():
+    print item[0], item[1]

@@ -1,0 +1,9 @@
+Author: Geoff Hotchkiss
+Date: 12/5/11
+
+Implementation of the Gale-Shapley algorithm.
+
+Your input is expected to be as described in the homework writeup. 
+
+Example:
+$ python GS.py < test.txt
