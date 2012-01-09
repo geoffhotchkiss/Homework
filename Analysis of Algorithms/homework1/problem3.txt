@@ -1,0 +1,27 @@
+foreach m in M:
+  foreach w in W:
+    U.add((m,w))
+
+while U.length != 0:
+  (x,y) = U.head
+  max = V(x,y)
+  for i = 1 to U.length:
+    (tx, ty) = U[i]
+    if V(tx,ty) > max:
+      max = V(tx,ty)
+      (x,y) = (tx,ty)
+  match[x] = y
+  match[y] = x
+  U = []
+  foreach m in M:
+    foreach w in W:
+      if (match[m] == 0 || prefer[m][w] > prefer[m][match[m]]) && 
+         (match[w] == 0 || prefer[w][m] > prefer[w][match[w]]):
+         U.add((m,w))
+
+U - list of tuples of strings - store pairs
+match - hashmap of strings to strings - stores matches between people
+prefer - hashmap of strings to hashmaps of strings to numbers - stores
+preferences between each person
+         
+      

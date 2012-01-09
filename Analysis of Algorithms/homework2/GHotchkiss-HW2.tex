@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{fullpage}
+\usepackage{verbatim}
+
+\renewcommand{\epsilon}{\varepsilon}
+
+\title{Homework 2}
+\author{Geoff Hotchkiss}
+
+\begin{document}
+\maketitle
+
+\noindent {\bf Theorem 1:} Suppose that $f(n) = O(g(n))$. Then $g(n) = \Omega(f(n))$. \\
+{\bf Proof:} We have that $f(n) = O(g(n))$. Then there exists constants $n_0 \geq 0$ and $c > 0$ such that $f(n) \leq c \cdot g(n)$ for all $n \geq n_0$.
+Since $c > 0$, it follows that $\frac{1}{c} > 0$ and $\frac{1}{c} \cdot f(n) \leq g(n)$. Let $\epsilon = \frac{1}{c}$ and let $n_0' = n_0$. Then there exists constants
+$\epsilon > 0$ and $n_0' \geq 0$ such that for all $n \geq  n_0'$, $g(n) \geq \epsilon \cdot f(n)$ which is the definition of $g(n) = \Omega(f(n))$.
+
+\begin{enumerate}
+	\item $\ln(n!), (\ln n)!$ \\
+				Since $(\ln n)! > \ln(n!)$ for all $n > 1500$, we have that $\ln(n!) = O((\ln n)!)$. \\ \\
+				I can't figure out how to show that $(\ln n)! \neq O(\ln(n!))$.
+	
+	\item $3n^2 + 17n, \frac{1}{3}n^3$ \\
+				$3^2 + 17n = O(\frac{1}{3}n^3)$ \\
+				{\bf Proof:} 
+				\begin{align*}
+					3n^2 + 17n & \leq 3n^3 + 17n^3 \quad \text{for $n \geq 1$} \\
+										 & = 20n^3 \\
+										 & = 60 \cdot \frac{1}{3}n^3.
+				\end{align*}
+				Thus, $n_0 = 1$ and $c = 60$. \\ \\
+				We need to show that $\frac{1}{3}n^3 \neq O(3n^2 + 17n)$. Thus we want to show that for all $c > 0$ and $n_0 \geq 0$, there exists an $n \geq n_0$
+				such that $\frac{1}{3} n^3 > c(3n^2 + 17n)$. Solving this inequality for $n$, we find that $n > \frac{1}{2} \left(9 c+\sqrt{3} \sqrt{68 c+27 c^2}\right)$. Thus, we can let $n = \frac{1}{2} \left(9 c+\sqrt{3} \sqrt{68 c+27 c^2}\right) + n_0 + 1 > n_0$ and we are done.
+				
+	\item $\displaystyle n^{\frac{1}{\ln n}}, n^2$ \\ \\
+				$\displaystyle n^{\frac{1}{\ln n}} = O(n^2)$ \\
+				{\bf Proof:}
+					We have that $2 > \frac{1}{\ln{2}} \approx 1.4427$. Thus $2 > \frac{1}{\ln n}$ for $n \geq 2$. Thus $n^2 \geq n^{\frac{1}{\ln n}}$ for 
+					$n \geq 2$, with $n_0 \geq 2$ and $c = 1$. \\ \\
+				We want to show that $n^2 \neq O(n^{\frac{1}{\ln n}})$. Thus we want to show that for all $c > 0$ and $n_0 \geq 0$, there exists an $n \geq n_0$ 
+				such that $n^2 > c \cdot n^{\frac{1}{\ln n}}$. Taking the logarithm of both sides, we obtain $2\ln n > \ln c + 1$. Thus whenever 
+				$n > e^{\frac{\ln c + 1}{2}}$ the inequality holds true. Thus, we can let $n = \max(e^{\frac{\ln c + 1}{2}}, n_0) + 1$ and we are done.
+					
+	\pagebreak
+					
+	\item $\displaystyle (\ln n)^{\ln n}, n^{\ln \ln n}$. \\
+	
+				{\bf Claim:} $\displaystyle (\ln n)^{\ln n} = n^{\ln \ln n}$. \\
+				{\bf Proof:} Let $\displaystyle f(n) = (\ln n)^{\ln n}$ and $\displaystyle g(n) = n^{\ln \ln n}$. It is sufficient to show that 
+				$\ln f(n) = \ln g(n)$. Since $\ln f(n) = (\ln n)(\ln \ln n)$ and $\ln g(n) = (\ln \ln n)(\ln n)$, we are done. \\
+				
+				{\bf Claim:} $\displaystyle (\ln n)^{\ln n} = O(n^{\ln \ln n})$ and $\displaystyle n^{\ln \ln n} = \Omega((\ln n)^{\ln n})$. \\
+				{\bf Proof:} Since we know that the two functions we are concerned with are equal, let $\displaystyle f(n) = (\ln n)^{\ln n}$. Note that 
+				$\displaystyle f(n) = n^{\ln \ln n}$ as well. Thus we have that:
+					\begin{align*}
+						f(n) = (\ln n)^{\ln n} & \leq f(n) \\
+																	 & = n^{\ln \ln n} \\
+						f(n) = n^{\ln \ln n} & \leq f(n) \\
+																 & = (\ln n)^{\ln n},
+					\end{align*}
+				and we are done. This also shows that they are $\Theta$ of each other since the two original functions are equaliviant.
+	
+	\item $\displaystyle \ln n , \frac{n}{\ln n}$. \\
+	      \begin{comment}
+				{\bf Claim:} $\displaystyle \ln n \leq \frac{n}{\ln n}$ for all $n \geq e^4$ and thus $\displaystyle \ln n = O(\frac{n}{\ln n})$. It follows that 
+				$\displaystyle \frac{n}{\ln n} = \Omega(\ln n)$. \\
+				{\bf Proof:} For all $n \geq e^4$, we have that:
+					\begin{align*}
+						\ln n & \leq \frac{1}{e^2} n \quad \Rightarrow \\
+						e^2 \ln n & \leq n \quad \Rightarrow \\
+						e^{2 (\ln \ln n)} & \leq e^{\ln n} \quad \Rightarrow \\
+						2 (\ln \ln n) & \leq \ln n \quad \Rightarrow \\
+						\ln \ln n & \leq \ln n - \ln \ln n \Rightarrow \\
+						\ln n & \leq \frac{n}{\ln n}.
+					\end{align*}
+				Thus for all $n \geq n_0 = e^4$, we have that $\ln n \leq \frac{n}{\ln n}$. Applying Theorem 1, we have the second part and we are done. Since 
+				we have the inequality, they are not $\Theta$ of each other. \\ \\
+				\end{comment}
+				{\bf Claim:} $\ln n = O(\frac{n}{\ln n})$. \\ 
+				{\bf Proof:} We need to show that there exists $c > 0$ and $n_0 \geq 0$ such that $c \cdot \frac{n}{\ln n} \geq \ln n$. Consider 
+				$\frac{n}{\ln n} > \ln n$. Since this is true for all $n \geq e$, we can let $n_0 = e$ and $c = 1$.\\ \\ 
+				We want to show that $\frac{n}{\ln n} \neq O(\ln n)$. Thus we want to show that for all $c > 0$ and $n_0 \geq 0$, there exists and $n \geq n_0$ 
+				such that $\frac{n}{\ln n} > c \ln n$. This simplifies to $\frac{n}{(\ln n)^2} > c$. Since
+					\begin{align*}
+						\lim_{n \to \infty} \frac{n}{(\ln n)^2} & = \lim_{n \to \infty} \frac{n}{2 \ln n} \\
+																										& = \lim_{n \to \infty} \frac{n}{2} = \infty,																					
+					\end{align*}
+				we can choose an $n' \in \mathbb{Z}^+$ such that $\frac{n'}{(\ln n')^2} > c$. Then let $n = \max(n', n_0) + 1$ and we are done.
+				
+				
+						
+\end{enumerate}
+\end{document}
