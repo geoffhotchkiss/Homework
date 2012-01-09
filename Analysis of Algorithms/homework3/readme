@@ -1,0 +1,11 @@
+Inorder to compile, run:
+
+  $ javac Heap.jav
+
+Then you may run the program by typing:
+
+  $ java Heap
+ 
+Alternativly, you can specifiy an input file as follows:
+  
+  $ java Heap < input.txt
