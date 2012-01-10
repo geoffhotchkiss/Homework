@@ -1,0 +1,36 @@
+4003-345 Compputer Organization  Exp. 0 - Activity 2 - Questions	(0.1)
+
+Your Name:		YOUR_ANSWER_HERE
+
+Q1. Given the instruction "add $t2,$s2,$t1", how are the operands being
+interpreted:
+A)	$t2 = $s2 + $t1
+B)	$t1 = $t2 + $s2
+C)	$s2 = $t2 + $t1
+
+Answer: A
+
+
+Q2.  What's the mnemonic of the instruction that will pass control to
+a subroutine?
+
+Answer: jal (jump and link)
+
+Q3.  What's the mnemonic of the instruction that will return from a
+subroutine?
+
+Answer: jr (jump register)
+
+Q4. Name one way that arguments can be passed to a subroutine via MIPS
+instructions.
+
+Answer: store them in registers $a0 - $a3
+
+Q5. The following 2 lines save the values of v[j] and v[j+1] into
+registers $t3 and $t2.
+        lw $t3,0($t2)
+        lw $t2,4($t2)
+Why do we use an offset of 4 for the 2nd load?
+
+Answer: Because the size of a int is 4 bytes
+
